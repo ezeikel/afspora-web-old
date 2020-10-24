@@ -2,6 +2,8 @@ import React from "react"
 import Img from "gatsby-image"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import emoji from "emoji-dictionary"
+import formatDistanceToNowStrict from "date-fns/formatDistanceToNowStrict"
 
 const options = {
   weekday: "long",
@@ -15,6 +17,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   border-radius: 8px;
   width: 350px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 
   > div {
     &:first-of-type {
@@ -42,16 +45,18 @@ const Wrapper = styled.div`
       padding: 32px;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 
       h2 {
         font-size: 25px;
+        line-height: 30px;
         margin: 0 0 32px;
         font-family: var(--secondary-font-family);
         font-weight: 300;
       }
 
       > div {
+        display: flex;
+        align-items: center;
         font-family: var(--primary-font-family);
         font-size: 16px;
         color: #707070;
@@ -59,7 +64,11 @@ const Wrapper = styled.div`
           margin-top: 16px;
         }
         svg {
-          margin-right: 8px;
+          flex: 0 0 1.25em;
+          margin-right: 16px;
+        }
+        span {
+          flex: 1 1 auto;
         }
       }
     }
@@ -72,7 +81,9 @@ const LeaderCard = ({
   <Wrapper>
     <div>
       <Img fixed={photo.fixed} />
-      <span>{country}</span>
+      <span>
+        {country} {emoji.getUnicode(country.toLowerCase().split(" ").join("_"))}
+      </span>
     </div>
     <div>
       <h2>
@@ -84,15 +95,15 @@ const LeaderCard = ({
           color="#707070"
           size="lg"
         />
-        President
+        <span>President</span>
       </div>
       <div>
         <FontAwesomeIcon icon={["fal", "users"]} color="#707070" size="lg" />
-        Party
+        <span>Party</span>
       </div>
       <div>
         <FontAwesomeIcon icon={["fal", "clock"]} color="#707070" size="lg" />
-        {new Date(since).toLocaleString("en-GB", options)}
+        {formatDistanceToNowStrict(new Date(since))} in office
       </div>
       <div>
         <FontAwesomeIcon
