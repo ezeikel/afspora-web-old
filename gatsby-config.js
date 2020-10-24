@@ -1,7 +1,35 @@
+require("dotenv").config()
+
+const typekitConfig = {
+  typekit: {
+    id: process.env.TYPEKIT_ID,
+  },
+}
+
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  host:
+    process.env.CUSTOM_NODE_ENV !== "dummy"
+      ? "cdn.contentful.com"
+      : "preview.contentful.com",
+  accessToken:
+    process.env.CUSTOM_NODE_ENV !== "dummy"
+      ? process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN
+      : process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+}
+
+const { spaceId, accessToken } = contentfulConfig
+
+if (!spaceId || !accessToken) {
+  throw new Error(
+    "Contentful spaceId and the access token need to be provided."
+  )
+}
+
 module.exports = {
   siteMetadata: {
-    title: `54 Leaders - Make Africa a Super Power`,
-    description: `A way for the African Diaspora to keep up to date with the politics back home.`,
+    title: `Afspora - A platform for members of the African Diaspora and allies to learn, connect and support Africa`,
+    description: `A way for the African Diaspora to support the development of the nations back home, help reverse the effects of Colonialism and build a better, stronger Africa.`,
     author: `Ezeikel Pemberton <hi@ezeikel.dev>`,
   },
   plugins: [
@@ -42,6 +70,10 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     `gatsby-plugin-styled-components`,
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: typekitConfig,
+    },
     {
       resolve: `gatsby-source-contentful`,
       options: {

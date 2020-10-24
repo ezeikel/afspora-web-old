@@ -15,6 +15,7 @@ import {
   faClock,
   faBirthdayCake,
 } from "@fortawesome/pro-light-svg-icons"
+import GlobalStyle from "../GlobalStyle"
 
 library.add(faBriefcase, faUsers, faClock, faUsers, faBirthdayCake)
 
@@ -30,9 +31,12 @@ const Main = styled.main`
 
 const Layout = ({ children }) => {
   return (
-    <Wrapper>
-      <Main>{children}</Main>
-    </Wrapper>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <Main>{children}</Main>
+      </Wrapper>
+    </>
   )
 }
 

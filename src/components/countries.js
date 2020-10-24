@@ -6,6 +6,7 @@ import LeaderCard from "./leaderCard"
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 32px;
 `
 
@@ -21,8 +22,8 @@ const Countries = () => {
               lastName
               since
               photo {
-                fixed(width: 350, height: 350, background: "rgb:000000") {
-                  ...GatsbyContentfulFixed_tracedSVG
+                fixed(width: 350, height: 350) {
+                  ...GatsbyContentfulFixed
                 }
               }
             }
@@ -38,8 +39,8 @@ const Countries = () => {
 
   return (
     <Wrapper>
-      {content.map(({ node: { name, person } }) => (
-        <LeaderCard country={name} leader={person} />
+      {content.map(({ node: { name, person } }, index) => (
+        <LeaderCard key={index} country={name} leader={person} />
       ))}
     </Wrapper>
   )
