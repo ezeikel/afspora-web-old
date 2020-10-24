@@ -7,12 +7,32 @@
 
 import React from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components"
+import { library } from "@fortawesome/fontawesome-svg-core"
+import {
+  faBriefcase,
+  faUsers,
+  faClock,
+  faBirthdayCake,
+} from "@fortawesome/pro-light-svg-icons"
+
+library.add(faBriefcase, faUsers, faClock, faUsers, faBirthdayCake)
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+`
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <main>{children}</main>
-    </>
+    <Wrapper>
+      <Main>{children}</Main>
+    </Wrapper>
   )
 }
 

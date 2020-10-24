@@ -1,6 +1,13 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import styled from "styled-components"
+import LeaderCard from "./leaderCard"
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+`
 
 const Countries = () => {
   const data = useStaticQuery(graphql`
@@ -9,16 +16,13 @@ const Countries = () => {
         edges {
           node {
             name
-            president {
+            person {
               firstName
               lastName
               since
               photo {
-                fixed(width: 300) {
-                  srcSet
-                  src
-                  height
-                  width
+                fixed(width: 350, height: 350, background: "rgb:000000") {
+                  ...GatsbyContentfulFixed_tracedSVG
                 }
               }
             }
@@ -30,29 +34,14 @@ const Countries = () => {
 
   const content = data.allContentfulCountry.edges
 
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }
+  console.log(data)
 
-  return content.map(
-    ({
-      node: {
-        name,
-        president: { firstName, lastName, photo, since },
-      },
-    }) => (
-      <div key={name}>
-        <h1>{name}</h1>
-        <Img fixed={photo.fixed} />
-        <h3>
-          {firstName} {lastName}
-        </h3>
-        <p>Since: {new Date(since).toLocaleString("en-GB", options)}</p>
-      </div>
-    )
+  return (
+    <Wrapper>
+      {content.map(({ node: { name, person } }) => (
+        <LeaderCard country={name} leader={person} />
+      ))}
+    </Wrapper>
   )
 }
 
