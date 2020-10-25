@@ -88,7 +88,9 @@ const LeaderCard = ({ country, office }) => {
         <Img fixed={photo.fixed} />
         <span>
           {country}{" "}
-          {emoji.getUnicode(country.toLowerCase().split(" ").join("_"))}
+          {emoji.getUnicode(
+            country.toLowerCase().split(" ").join("_").replace(/-/g, "_")
+          )}
         </span>
       </div>
       <div>
@@ -111,14 +113,16 @@ const LeaderCard = ({ country, office }) => {
           <FontAwesomeIcon icon={["fal", "clock"]} color="#707070" size="lg" />
           {formatDistanceToNowStrict(new Date(termStart))} in office
         </div>
-        <div>
-          <FontAwesomeIcon
-            icon={["fal", "birthday-cake"]}
-            color="#707070"
-            size="lg"
-          />
-          {formatDistanceToNowStrict(new Date(dob))} old
-        </div>
+        {dob && (
+          <div>
+            <FontAwesomeIcon
+              icon={["fal", "birthday-cake"]}
+              color="#707070"
+              size="lg"
+            />
+            {formatDistanceToNowStrict(new Date(dob))} old
+          </div>
+        )}
       </div>
     </Wrapper>
   )

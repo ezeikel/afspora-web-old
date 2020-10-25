@@ -29,14 +29,14 @@ if (!spaceId || !accessToken) {
 module.exports = {
   siteMetadata: {
     title: `Afspora - A platform for members of the African Diaspora and allies to learn, connect and support Africa`,
-    description: `A way for the African Diaspora to support the development of the nations back home, help reverse the effects of Colonialism and build a better, stronger Africa.`,
+    description: `A way for the African Diaspora to support the development of the nations back home in Africa and the Caribbean, help reverse the effects of Colonialism and build a better, stronger Africa and Caribbean.`,
     author: `Ezeikel Pemberton <hi@ezeikel.dev>`,
   },
   plugins: [
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "",
+        trackingId: "G-GTN7TJT5W3",
         head: true,
         // TODO: find out if this is required due to any privacy laws
         // anonymize: true,
@@ -79,16 +79,6 @@ module.exports = {
       options: {
         spaceId: `0uo3ojc0ft0h`,
         accessToken: `hX231TB-SVf-ewPG3Vz-gezunE9He1fX_mE16mIYZkM`,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-sentry",
-      options: {
-        dsn: "",
-        // Optional settings, see https://docs.sentry.io/clients/node/config/#optional-settings
-        environment: process.env.NODE_ENV,
-        enabled: (() =>
-          ["production", "stage"].indexOf(process.env.NODE_ENV) !== -1)(),
       },
     },
   ],

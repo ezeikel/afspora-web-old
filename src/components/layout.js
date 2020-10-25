@@ -22,6 +22,7 @@ library.add(faBriefcase, faUsers, faClock, faUsers, faBirthdayCake)
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 32px;
 `
 
 const Main = styled.main`
