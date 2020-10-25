@@ -10,22 +10,31 @@ const Wrapper = styled.div`
   gap: 32px;
 `
 
-const Countries = () => {
+const Leaders = () => {
   const data = useStaticQuery(graphql`
     query {
       allContentfulCountry(sort: { fields: name, order: ASC }) {
         edges {
           node {
             name
-            person {
-              firstName
-              lastName
-              since
-              photo {
-                fixed(width: 350, height: 350) {
-                  ...GatsbyContentfulFixed
+            office {
+              person {
+                firstName
+                lastName
+                dob
+                photo {
+                  id
+                  fixed(width: 350, height: 350) {
+                    srcSet
+                    src
+                    height
+                    width
+                  }
                 }
               }
+              title
+              termStart
+              party
             }
           }
         }
@@ -35,15 +44,15 @@ const Countries = () => {
 
   const content = data.allContentfulCountry.edges
 
-  console.log(data)
+  console.log({ content })
 
   return (
     <Wrapper>
-      {content.map(({ node: { name, person } }, index) => (
-        <LeaderCard key={index} country={name} leader={person} />
-      ))}
+      {content.map(({ node: { name, office } }, index) => {
+        return <LeaderCard key={index} country={name} office={office} />
+      })}
     </Wrapper>
   )
 }
 
-export default Countries
+export default Leaders

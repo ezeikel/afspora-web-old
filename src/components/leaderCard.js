@@ -74,47 +74,54 @@ const Wrapper = styled.div`
     }
   }
 `
-const LeaderCard = ({
-  country,
-  leader: { firstName, lastName, photo, since },
-}) => (
-  <Wrapper>
-    <div>
-      <Img fixed={photo.fixed} />
-      <span>
-        {country} {emoji.getUnicode(country.toLowerCase().split(" ").join("_"))}
-      </span>
-    </div>
-    <div>
-      <h2>
-        {firstName} {lastName}
-      </h2>
+const LeaderCard = ({ country, office }) => {
+  if (!country || !office) debugger
+
+  const selectedOffice = office[0]
+  const { title, termStart, person, party } = selectedOffice
+  if (!person) debugger
+  const leader = person[0]
+  const { firstName, lastName, dob, photo } = leader
+  return (
+    <Wrapper>
       <div>
-        <FontAwesomeIcon
-          icon={["fal", "briefcase"]}
-          color="#707070"
-          size="lg"
-        />
-        <span>President</span>
+        <Img fixed={photo.fixed} />
+        <span>
+          {country}{" "}
+          {emoji.getUnicode(country.toLowerCase().split(" ").join("_"))}
+        </span>
       </div>
       <div>
-        <FontAwesomeIcon icon={["fal", "users"]} color="#707070" size="lg" />
-        <span>Party</span>
+        <h2>
+          {firstName} {lastName}
+        </h2>
+        <div>
+          <FontAwesomeIcon
+            icon={["fal", "briefcase"]}
+            color="#707070"
+            size="lg"
+          />
+          <span>{title}</span>
+        </div>
+        <div>
+          <FontAwesomeIcon icon={["fal", "users"]} color="#707070" size="lg" />
+          <span>{party}</span>
+        </div>
+        <div>
+          <FontAwesomeIcon icon={["fal", "clock"]} color="#707070" size="lg" />
+          {formatDistanceToNowStrict(new Date(termStart))} in office
+        </div>
+        <div>
+          <FontAwesomeIcon
+            icon={["fal", "birthday-cake"]}
+            color="#707070"
+            size="lg"
+          />
+          {formatDistanceToNowStrict(new Date(dob))} old
+        </div>
       </div>
-      <div>
-        <FontAwesomeIcon icon={["fal", "clock"]} color="#707070" size="lg" />
-        {formatDistanceToNowStrict(new Date(since))} in office
-      </div>
-      <div>
-        <FontAwesomeIcon
-          icon={["fal", "birthday-cake"]}
-          color="#707070"
-          size="lg"
-        />
-        Years old
-      </div>
-    </div>
-  </Wrapper>
-)
+    </Wrapper>
+  )
+}
 
 export default LeaderCard
