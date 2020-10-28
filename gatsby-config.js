@@ -93,5 +93,88 @@ module.exports = {
         accessToken: `hX231TB-SVf-ewPG3Vz-gezunE9He1fX_mE16mIYZkM`,
       },
     },
+    {
+      resolve: `gatsby-source-twitter`,
+      options: {
+        credentials: {
+          consumer_key: "PSl97FR38n7Y4Mkpy8zYnyioa",
+          consumer_secret: "VtIpPIqZawiqSWJSf0Sok4VflLfjzwGsMjLHZBnsvFWRPT0J72",
+          bearer_token:
+            "AAAAAAAAAAAAAAAAAAAAADfYJAEAAAAAiz8VRT7AioRbaEiFm3Tvu7j6SMI%3D4kXOV14hLNYkYTwkRAFF6RT0nR5vThNUZrRfAQuPvDZJQtQJbC",
+        },
+        queries: {
+          endSARSHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#endSARS",
+              tweet_mode: "extended",
+            },
+          },
+          congoIsBleedingHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#congoIsBleeding",
+              tweet_mode: "extended",
+            },
+          },
+          anglophoneCrisisHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#anglophoneCrisis",
+              tweet_mode: "extended",
+            },
+          },
+          zimbabweanLivesMatterHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#zimbabweanLivesMatter",
+              tweet_mode: "extended",
+            },
+          },
+          shutItAllDownHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#shutItAllDown",
+              tweet_mode: "extended",
+            },
+          },
+          stopBGVHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#stopGBV",
+              tweet_mode: "extended",
+            },
+          },
+          prayforEthiopiaHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#prayforEthiopia",
+              tweet_mode: "extended",
+            },
+          },
+          rapeNationalEmergencyHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#rapeNationalEmergency",
+              tweet_mode: "extended",
+            },
+          },
+          ugandaNeedsChangeHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#ugandaNeedsChange",
+              tweet_mode: "extended",
+            },
+          },
+          endPoliceBrutalityInUgandaHashtag: {
+            endpoint: "search/tweets",
+            params: {
+              q: "#endPoliceBrutalityInUganda",
+              tweet_mode: "extended",
+            },
+          },
+        },
+      },
+    },
   ],
 }
